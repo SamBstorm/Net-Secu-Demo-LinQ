@@ -78,8 +78,36 @@ namespace Demo_LinQ_OperateursLinQ
             }
             
             */
-            
 
+            /** DEMO Aggregate func
+             
+
+            int nbContact = contacts.Count();
+
+            int nbContactMin4Char = contacts.Count(c => c.LastName.Length >= 4);
+
+            int minCharInName = contacts.Min(c => c.LastName.Length);
+
+            int maxCharInName = contacts.Max(c => c.LastName.Length);
+
+            double averageAge = DateTime.Now.Year - contacts.Average(c => c.BirthDateYear);
+             */
+
+            /** DEMO Group By
+
+            //IEnumerable<IGrouping<int, Contact>> group_par_date = contacts.GroupBy(c => c.BirthDateYear);
+            IEnumerable<IGrouping<int, Contact>> group_par_date = from c in contacts
+                                                                  group c by c.BirthDateYear;
+
+            foreach (IGrouping<int,Contact> group in group_par_date)
+            {
+                Console.WriteLine($"{group.Key} : {group.Count()}");
+                foreach (Contact contact in group)
+                {
+                    Console.WriteLine($"\t{contact.FirstName} {contact.LastName} {contact.Email}");
+                }
+            }
+             */
         }
     }
 }
