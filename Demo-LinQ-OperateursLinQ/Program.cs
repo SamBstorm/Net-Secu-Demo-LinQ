@@ -33,6 +33,7 @@ namespace Demo_LinQ_OperateursLinQ
                 Console.WriteLine($"{c.LastName} {c.FirstName} {c.Email} {c.BirthDateYear}");
             }
 
+            /** DEMO Where
             IEnumerable<Contact> jeunes = contacts.Where(c => c.BirthDateYear >= 1990 && c.FirstName[0] == 'D');
 
             //IEnumerable<Contact> jeunes = from Contact c in contacts
@@ -45,6 +46,40 @@ namespace Demo_LinQ_OperateursLinQ
             {
                 Console.WriteLine($"\t- {c.BirthDateYear} {c.FirstName}");
             }
+            */
+
+            /** DEMO Select
+
+            //IEnumerable<string> emails = contacts.Select( c => c.Email );
+
+            IEnumerable<string> emails = from c in contacts
+                                         select c.Email;
+
+            //var persons = contacts.Select( c => new { c.FirstName, c.LastName } );
+            var persons = from c in contacts
+                          select new { c.FirstName, c.LastName };
+
+
+            foreach (string email in emails)
+            {
+                Console.WriteLine($"Email : {email}");
+            }
+
+            foreach (var person in persons)
+            {
+                Console.WriteLine($"Personne : {person.LastName} {person.FirstName}");
+            }
+
+            IEnumerable<int> ages = contacts.Select(c => DateTime.Now.Year - c.BirthDateYear);
+
+            foreach (int age in ages)
+            {
+                Console.WriteLine($"Âge : {age}");
+            }
+            
+            */
+            
+
         }
     }
 }
